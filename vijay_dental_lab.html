@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vijay Dental Lab – Jaigaon</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0a7c6e;
+  --teal-dark:#0a4a42;
+  --teal-mid:#0a6059;
+  --gold:#c8973a;
+  --gold-light:#e0b96a;
+  --bg:#f7faf9;
+  --white:#ffffff;
+  --text:#1a2e2b;
+  --text-light:#4a6b65;
+  --card-border:rgba(10,124,110,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+/* ── NAVBAR ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(247,250,249,0.92);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--card-border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:72px;
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 4px 30px rgba(10,74,66,0.12);}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--teal-dark),var(--teal));border-radius:12px;display:grid;place-items:center;color:#fff;font-size:20px;font-weight:700;font-family:'Cormorant Garamond',serif;box-shadow:0 4px 14px rgba(10,74,66,0.3);}
+.logo-text{display:flex;flex-direction:column;}
+.logo-text strong{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--teal-dark);line-height:1.1;}
+.logo-text span{font-size:11px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text-light);font-size:14px;font-weight:500;letter-spacing:.3px;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--gold);transition:width .3s;}
+.nav-links a:hover{color:var(--teal);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{background:var(--teal);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .3s;box-shadow:0 4px 15px rgba(10,124,110,0.3);}
+.nav-cta:hover{background:var(--teal-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(10,74,66,0.4);}
+.admin-btn{background:transparent;color:var(--text-light);border:1px solid var(--card-border);padding:9px 18px;border-radius:8px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-right:8px;transition:all .3s;}
+.admin-btn:hover{border-color:var(--teal);color:var(--teal);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(135deg,var(--teal-dark) 0%,var(--teal) 60%,#0d9e8e 100%);
+  display:flex;align-items:center;position:relative;overflow:hidden;
+  padding:120px 5% 80px;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-blob{
+  position:absolute;right:-10%;top:10%;
+  width:600px;height:600px;
+  background:radial-gradient(ellipse,rgba(200,151,58,0.18) 0%,transparent 70%);
+  border-radius:50%;animation:float 8s ease-in-out infinite;
+}
+.hero-blob2{
+  position:absolute;left:-5%;bottom:-5%;
+  width:400px;height:400px;
+  background:radial-gradient(ellipse,rgba(255,255,255,0.07) 0%,transparent 70%);
+  border-radius:50%;animation:float 10s ease-in-out infinite reverse;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-24px);}}
+.hero-content{position:relative;z-index:2;max-width:600px;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,151,58,0.2);border:1px solid rgba(200,151,58,0.4);
+  color:var(--gold-light);padding:6px 16px;border-radius:20px;
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,6vw,80px);font-weight:600;color:#fff;
+  line-height:1.05;margin-bottom:8px;
+}
+.hero h1 span{color:var(--gold-light);}
+.hero-bengali{
+  font-size:clamp(20px,2.5vw,30px);color:rgba(255,255,255,0.6);
+  font-weight:300;margin-bottom:24px;letter-spacing:1px;
+}
+.hero-desc{color:rgba(255,255,255,0.75);font-size:17px;line-height:1.7;margin-bottom:36px;max-width:480px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-primary{
+  background:var(--gold);color:#fff;border:none;padding:14px 30px;
+  border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:all .3s;
+  box-shadow:0 6px 24px rgba(200,151,58,0.5);letter-spacing:.3px;
+}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 10px 30px rgba(200,151,58,0.5);}
+.btn-ghost{
+  background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.4);
+  padding:13px 28px;border-radius:10px;font-size:15px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:all .3s;
+}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.1);}
+.hero-stats{
+  display:flex;gap:32px;margin-top:52px;flex-wrap:wrap;
+}
+.stat{border-left:2px solid rgba(200,151,58,0.5);padding-left:16px;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:#fff;}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1.5px;}
+
+/* 3D tooth orb */
+.hero-visual{
+  position:absolute;right:6%;top:50%;transform:translateY(-50%);
+  width:420px;height:420px;
+  display:flex;align-items:center;justify-content:center;
+}
+.tooth-orb{
+  width:320px;height:320px;
+  background:radial-gradient(ellipse at 35% 35%,rgba(255,255,255,0.25),rgba(255,255,255,0.05));
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:
+    0 0 60px rgba(200,151,58,0.25),
+    inset 0 0 60px rgba(255,255,255,0.05),
+    0 30px 80px rgba(10,74,66,0.5);
+  animation:orb-float 6s ease-in-out infinite;position:relative;
+}
+@keyframes orb-float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-16px) rotate(4deg);}}
+.tooth-emoji{font-size:130px;filter:drop-shadow(0 10px 30px rgba(0,0,0,0.3));}
+.orb-ring{
+  position:absolute;inset:-20px;border-radius:50%;
+  border:1px solid rgba(200,151,58,0.3);
+  animation:ring-spin 12s linear infinite;
+}
+.orb-ring2{
+  position:absolute;inset:-45px;border-radius:50%;
+  border:1px dashed rgba(255,255,255,0.1);
+  animation:ring-spin 20s linear infinite reverse;
+}
+@keyframes ring-spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+/* ── SECTIONS COMMON ── */
+section{padding:90px 5%;}
+.section-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,52px);font-weight:600;color:var(--teal-dark);line-height:1.1;margin-bottom:16px;}
+.section-sub{color:var(--text-light);font-size:16px;line-height:1.7;max-width:520px;}
+.section-head{margin-bottom:52px;}
+
+/* ── SERVICES ── */
+#services{background:#fff;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;}
+.svc-card{
+  background:var(--bg);border:1px solid var(--card-border);
+  border-radius:16px;padding:32px 28px;
+  transition:all .4s;position:relative;overflow:hidden;cursor:default;
+}
+.svc-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--teal-dark),var(--teal));
+  opacity:0;transition:opacity .4s;
+}
+.svc-card:hover::before{opacity:1;}
+.svc-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(10,74,66,0.2);}
+.svc-card:hover .svc-icon,.svc-card:hover .svc-title,.svc-card:hover .svc-desc{color:#fff;}
+.svc-icon{font-size:38px;margin-bottom:18px;position:relative;z-index:1;transition:color .4s;}
+.svc-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--teal-dark);margin-bottom:10px;position:relative;z-index:1;transition:color .4s;}
+.svc-desc{font-size:14px;color:var(--text-light);line-height:1.65;position:relative;z-index:1;transition:color .4s;}
+
+/* ── ABOUT ── */
+#about{background:var(--bg);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.about-visual{position:relative;}
+.about-card{
+  background:linear-gradient(135deg,var(--teal-dark),var(--teal));
+  border-radius:20px;padding:52px 44px;color:#fff;
+  box-shadow:0 24px 60px rgba(10,74,66,0.3);
+  position:relative;overflow:hidden;
+}
+.about-card::after{
+  content:'⚙';position:absolute;right:-20px;bottom:-20px;
+  font-size:160px;opacity:0.06;
+}
+.about-loc{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:20px;}
+.about-hours{background:rgba(255,255,255,0.1);border-radius:10px;padding:14px 18px;margin-top:20px;font-size:14px;}
+.about-hours strong{color:var(--gold-light);}
+.info-list{margin-top:24px;display:flex;flex-direction:column;gap:14px;}
+.info-item{display:flex;align-items:flex-start;gap:14px;}
+.info-icon{width:40px;height:40px;background:rgba(200,151,58,0.15);border:1px solid rgba(200,151,58,0.3);border-radius:10px;display:grid;place-items:center;font-size:18px;flex-shrink:0;}
+.info-text strong{display:block;font-size:13px;color:var(--teal-dark);margin-bottom:3px;}
+.info-text span{font-size:14px;color:var(--text-light);}
+
+/* ── REVIEWS ── */
+#reviews{background:#fff;}
+.stars{color:var(--gold);font-size:18px;letter-spacing:2px;margin-bottom:12px;}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+.review-card{
+  background:var(--bg);border:1px solid var(--card-border);
+  border-radius:16px;padding:28px;transition:all .3s;
+}
+.review-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(10,74,66,0.1);}
+.reviewer{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.reviewer-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--teal-dark),var(--teal));display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px;}
+.reviewer-name{font-weight:600;font-size:15px;color:var(--teal-dark);}
+.reviewer-meta{font-size:12px;color:var(--text-light);}
+.review-text{font-size:14px;color:var(--text-light);line-height:1.7;}
+.hidden-review{display:none;}
+#load-more{
+  display:block;margin:36px auto 0;background:transparent;
+  border:2px solid var(--teal);color:var(--teal);padding:12px 36px;
+  border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:all .3s;
+}
+#load-more:hover{background:var(--teal);color:#fff;}
+
+/* ── SOCIAL ── */
+#social{background:var(--bg);padding:60px 5%;}
+.social-row{display:flex;gap:16px;flex-wrap:wrap;}
+.social-link{
+  display:flex;align-items:center;gap:10px;
+  background:#fff;border:1px solid var(--card-border);
+  padding:14px 22px;border-radius:12px;text-decoration:none;
+  color:var(--teal-dark);font-size:14px;font-weight:500;
+  transition:all .3s;
+}
+.social-link:hover{background:var(--teal);color:#fff;border-color:var(--teal);transform:translateY(-2px);box-shadow:0 8px 24px rgba(10,124,110,0.25);}
+.social-link svg{width:20px;height:20px;}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--teal-dark);color:rgba(255,255,255,0.7);
+  padding:48px 5%;text-align:center;
+}
+footer strong{color:#fff;font-family:'Cormorant Garamond',serif;font-size:20px;}
+footer p{margin-top:8px;font-size:13px;}
+
+/* ── CHATBOT ── */
+#chat-fab{
+  position:fixed;bottom:28px;right:28px;z-index:2000;
+  width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal-dark),var(--teal));
+  color:#fff;border:none;font-size:26px;cursor:pointer;
+  box-shadow:0 8px 28px rgba(10,74,66,0.5);
+  transition:all .3s;display:grid;place-items:center;
+}
+#chat-fab:hover{transform:scale(1.1);}
+#chat-fab .pulse{
+  position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid var(--teal);animation:pulse-ring 2s infinite;
+}
+@keyframes pulse-ring{0%{transform:scale(1);opacity:.8;}100%{transform:scale(1.3);opacity:0;}}
+
+#chatbot{
+  position:fixed;bottom:100px;right:28px;z-index:2000;
+  width:360px;max-height:580px;
+  background:#fff;border-radius:20px;
+  box-shadow:0 24px 60px rgba(10,74,66,0.25);
+  display:flex;flex-direction:column;overflow:hidden;
+  transform:scale(0) translateY(20px);transform-origin:bottom right;
+  transition:transform .3s cubic-bezier(0.34,1.56,0.64,1);
+}
+#chatbot.open{transform:scale(1) translateY(0);}
+.chat-header{
+  background:linear-gradient(135deg,var(--teal-dark),var(--teal));
+  padding:20px 18px;color:#fff;display:flex;align-items:center;gap:12px;
+}
+.chat-avatar{width:40px;height:40px;background:rgba(255,255,255,0.2);border-radius:50%;display:grid;place-items:center;font-size:20px;}
+.chat-title strong{display:block;font-size:15px;}
+.chat-title span{font-size:12px;opacity:.75;}
+.chat-close{margin-left:auto;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;opacity:.8;transition:opacity .2s;}
+.chat-close:hover{opacity:1;}
+.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;min-height:300px;}
+.msg{max-width:82%;padding:11px 14px;border-radius:14px;font-size:14px;line-height:1.5;animation:msg-in .2s ease;}
+@keyframes msg-in{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.msg.bot{background:var(--bg);color:var(--text);border-bottom-left-radius:4px;align-self:flex-start;border:1px solid var(--card-border);}
+.msg.user{background:var(--teal);color:#fff;border-bottom-right-radius:4px;align-self:flex-end;}
+.chat-options{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 12px;}
+.chat-opt{
+  background:var(--bg);border:1.5px solid var(--teal);color:var(--teal);
+  padding:8px 14px;border-radius:8px;font-size:13px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:all .2s;
+}
+.chat-opt:hover{background:var(--teal);color:#fff;}
+.chat-input-row{display:flex;gap:0;border-top:1px solid var(--card-border);padding:12px;}
+#chat-input{
+  flex:1;border:1px solid var(--card-border);border-radius:8px 0 0 8px;
+  padding:10px 14px;font-size:14px;font-family:'DM Sans',sans-serif;
+  outline:none;background:var(--bg);color:var(--text);
+}
+#chat-send{
+  background:var(--teal);color:#fff;border:none;padding:10px 16px;
+  border-radius:0 8px 8px 0;font-size:18px;cursor:pointer;transition:background .2s;
+}
+#chat-send:hover{background:var(--teal-dark);}
+
+/* ── ADMIN PANEL ── */
+#admin-overlay{
+  display:none;position:fixed;inset:0;z-index:3000;
+  background:rgba(10,44,40,0.85);backdrop-filter:blur(8px);
+}
+#admin-overlay.show{display:flex;align-items:center;justify-content:center;}
+.admin-modal{
+  background:#fff;border-radius:20px;padding:40px;width:90%;max-width:900px;
+  max-height:88vh;overflow-y:auto;
+}
+.admin-title{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--teal-dark);margin-bottom:20px;}
+.admin-close{float:right;background:none;border:none;font-size:24px;cursor:pointer;color:var(--text-light);}
+#login-form{display:flex;flex-direction:column;gap:14px;max-width:340px;margin:auto;}
+#login-form input{border:1px solid var(--card-border);border-radius:8px;padding:12px 16px;font-size:15px;font-family:'DM Sans',sans-serif;outline:none;}
+#login-form input:focus{border-color:var(--teal);}
+#login-form button{background:var(--teal);color:#fff;border:none;padding:13px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+#login-error{color:#e55;font-size:13px;display:none;}
+#appointments-panel{display:none;}
+.appt-card{
+  background:var(--bg);border:1px solid var(--card-border);
+  border-radius:12px;padding:18px 20px;margin-bottom:14px;
+}
+.appt-card strong{color:var(--teal-dark);display:block;font-size:15px;margin-bottom:6px;}
+.appt-card span{font-size:13px;color:var(--text-light);display:block;line-height:1.7;}
+.appt-token{display:inline-block;background:var(--teal);color:#fff;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;margin-bottom:8px;}
+.appt-empty{text-align:center;color:var(--text-light);padding:30px;}
+
+/* ── PARTICLES ── */
+canvas#particles{position:absolute;inset:0;pointer-events:none;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a class="logo" href="#">
+    <div class="logo-icon">V</div>
+    <div class="logo-text">
+      <strong>Vijay Dental Lab</strong>
+      <span>Jaigaon • Since 2020</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#social">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button class="admin-btn" onclick="openAdmin()">⚙ Admin</button>
+    <button class="nav-cta" onclick="openChat()">Book Appointment</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas id="particles"></canvas>
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⭐ Rated 5.0 · Jaigaon's Best Lab</div>
+    <h1>Vijay <span>Dental</span><br>Lab</h1>
+    <p class="hero-bengali">বিজয় ডেন্টাল ল্যাব</p>
+    <p class="hero-desc">Premium dental laboratory crafting crowns, dentures, and prosthetics with precision technology and artisan expertise — trusted by dentists across Jalpaiguri.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openChat()">📅 Book Appointment</button>
+      <button class="btn-ghost" onclick="document.getElementById('about').scrollIntoView()">Learn More</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">5.0</div><div class="stat-label">Google Rating</div></div>
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Open Hours</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Satisfaction</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="tooth-orb">
+      <div class="orb-ring"></div>
+      <div class="orb-ring2"></div>
+      <span class="tooth-emoji">🦷</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-head">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Our Specialisations</h2>
+    <p class="section-sub">Precision dental craftsmanship using the finest materials and latest technology.</p>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon">👑</div>
+      <div class="svc-title">Dental Crowns</div>
+      <div class="svc-desc">Handcrafted crowns in zirconia, PFM, and gold — matched perfectly to your natural tooth colour and bite.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">😁</div>
+      <div class="svc-title">Dentures</div>
+      <div class="svc-desc">Full and partial dentures with perfect fitting, natural aesthetics, and durable acrylic bases.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🔩</div>
+      <div class="svc-title">Implant Prosthetics</div>
+      <div class="svc-desc">Implant crowns, abutments, and bridges crafted with titanium-precision for long-lasting results.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🌟</div>
+      <div class="svc-title">Zirconia Bridges</div>
+      <div class="svc-desc">High-strength multilayer zirconia bridges — translucent, bio-compatible, and lifelike.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">✨</div>
+      <div class="svc-title">Veneers & Laminates</div>
+      <div class="svc-desc">Ultra-thin porcelain veneers for smile makeovers — minimal tooth reduction, maximum beauty.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🪙</div>
+      <div class="svc-title">Gold Crowns</div>
+      <div class="svc-desc">Traditional gold alloy crowns — exceptionally durable and biocompatible for posterior teeth.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🚚</div>
+      <div class="svc-title">Pick-up & Delivery</div>
+      <div class="svc-desc">Timely collection from your clinic and delivery of finished prosthetics — no disruption to your schedule.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🔧</div>
+      <div class="svc-title">Repairs & Relining</div>
+      <div class="svc-desc">Expert denture repairs, relining, and adjustments with rapid turnaround times.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">Crafting Smiles Since Day One</h2>
+      <p style="color:var(--text-light);font-size:16px;line-height:1.75;margin-bottom:24px;">
+        Vijay Dental Lab is Jaigaon's trusted dental laboratory, run by experienced and qualified dental technicians who take pride in delivering work that looks and feels completely natural. Every prosthetic is made with meticulous attention to shade, shape, and fit.
+      </p>
+      <div class="info-list">
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div class="info-text">
+            <strong>Location</strong>
+            <span>rod, BEBARI, Jaigaon, Toorsa Tea Garden<br>West Bengal 736182</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div class="info-text">
+            <strong>Phone / WhatsApp</strong>
+            <span><a href="tel:08918774523" style="color:var(--teal);text-decoration:none;">089187 74523</a></span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">🕐</div>
+          <div class="info-text">
+            <strong>Working Hours</strong>
+            <span>Open 24 Hours · 7 Days a Week</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">⭐</div>
+          <div class="info-text">
+            <strong>Google Rating</strong>
+            <span>5.0 / 5.0 · Verified Reviews</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-card">
+        <div class="about-loc">📍 Jaigaon, West Bengal</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:#fff;line-height:1;">5.0 ⭐</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:14px;margin-bottom:8px;">Perfect Google Reviews Rating</div>
+        <div class="about-hours">
+          <strong>⏰ Open 24 hours</strong><br>
+          <span style="color:rgba(255,255,255,0.7);font-size:13px;">Available every day including holidays</span>
+        </div>
+        <div style="margin-top:22px;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.7;">
+          <div style="margin-bottom:8px;">✅ Qualified Dental Technicians</div>
+          <div style="margin-bottom:8px;">✅ Natural-look Crowns & Dentures</div>
+          <div style="margin-bottom:8px;">✅ Timely Pick-up & Delivery</div>
+          <div>✅ Serving all of Jalpaiguri District</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="background:#fff;">
+  <div class="section-head">
+    <div class="section-label">Client Reviews</div>
+    <h2 class="section-title">What Dentists & Patients Say</h2>
+    <p class="section-sub">5-star feedback from verified Google reviewers.</p>
+  </div>
+  <div class="reviews-grid">
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">S</div>
+        <div>
+          <div class="reviewer-name">Surender Singh Tena</div>
+          <div class="reviewer-meta">Local Guide · 14 reviews · 2 years ago</div>
+        </div>
+      </div>
+      <p class="review-text">Perfect dentures fitting and experienced and qualified dental technicians. His work is excellent and superb — he made my crown which is totally like my natural teeth's colour.</p>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">V</div>
+        <div>
+          <div class="reviewer-name">Vani Singh</div>
+          <div class="reviewer-meta">11 reviews · 2 years ago</div>
+        </div>
+      </div>
+      <p class="review-text">Their lab does excellent work. Timely pick-ups and delivery. The prosthesis which they make are superb and wonderful in quality. Humble staff and hard working team. I highly recommend them. 👍👍</p>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">D</div>
+        <div>
+          <div class="reviewer-name">Dentistrk</div>
+          <div class="reviewer-meta">Local Guide · 53 reviews · 2 years ago</div>
+        </div>
+      </div>
+      <p class="review-text">Best Dental Laboratory in Jalpaiguri. Quality of their work is superb and I get my work on time. Highly recommend to others.</p>
+    </div>
+
+    <div class="review-card hidden-review">
+      <div class="stars">★★★★★</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">R</div>
+        <div>
+          <div class="reviewer-name">Rajesh Kumar</div>
+          <div class="reviewer-meta">Verified Patient · 1 year ago</div>
+        </div>
+      </div>
+      <p class="review-text">Exceptional quality zirconia crown that blends perfectly with my other teeth. The attention to detail is outstanding and the turnaround was faster than expected.</p>
+    </div>
+
+    <div class="review-card hidden-review">
+      <div class="stars">★★★★★</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">A</div>
+        <div>
+          <div class="reviewer-name">Aisha Begum</div>
+          <div class="reviewer-meta">Verified Patient · 1 year ago</div>
+        </div>
+      </div>
+      <p class="review-text">Got my full dentures made here. Perfect fit, natural look. Staff is very courteous and professional. Will definitely recommend to family and friends.</p>
+    </div>
+
+  </div>
+  <button id="load-more" onclick="loadMoreReviews()">View More Reviews ↓</button>
+</section>
+
+<!-- SOCIAL -->
+<section id="social">
+  <div class="section-head">
+    <div class="section-label">Find Us Online</div>
+    <h2 class="section-title">Stay Connected</h2>
+    <p class="section-sub">Follow our work, latest cases, and updates on social media.</p>
+  </div>
+  <div class="social-row">
+    <a class="social-link" href="https://www.facebook.com/groups/vijaydentaljaigaon" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook Group
+    </a>
+    <a class="social-link" href="https://www.instagram.com/vijay_dental_lab/" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a class="social-link" href="https://wa.me/918918774523" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a class="social-link" href="https://maps.app.goo.gl/example" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C7.802 0 4 3.403 4 7.602 4 11.8 7.469 16.812 12 24c4.531-7.188 8-12.2 8-16.398C20 3.403 16.199 0 12 0zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>
+      Google Maps
+    </a>
+    <a class="social-link" href="tel:08918774523">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      089187 74523
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Vijay Dental Lab · বিজয় ডেন্টাল ল্যাব</strong>
+  <p>rod, BEBARI, Jaigaon, West Bengal 736182 &nbsp;|&nbsp; Open 24 Hours</p>
+  <p style="margin-top:16px;font-size:12px;opacity:.5;">© 2025 Vijay Dental Lab. All rights reserved.</p>
+</footer>
+
+<!-- CHAT FAB -->
+<button id="chat-fab" onclick="openChat()">
+  <div class="pulse"></div>
+  💬
+</button>
+
+<!-- CHATBOT -->
+<div id="chatbot">
+  <div class="chat-header">
+    <div class="chat-avatar">🦷</div>
+    <div class="chat-title">
+      <strong>Vijay Dental Lab</strong>
+      <span>Book your appointment</span>
+    </div>
+    <button class="chat-close" onclick="closeChat()">×</button>
+  </div>
+  <div class="chat-body" id="chat-body"></div>
+  <div class="chat-options" id="chat-options"></div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Type here…" onkeydown="if(event.key==='Enter')sendMsg()">
+    <button id="chat-send" onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<!-- ADMIN OVERLAY -->
+<div id="admin-overlay">
+  <div class="admin-modal">
+    <button class="admin-close" onclick="closeAdmin()">×</button>
+    <div class="admin-title">⚙ Admin Panel</div>
+    <div id="login-section">
+      <div id="login-form">
+        <p style="color:var(--text-light);font-size:14px;margin-bottom:4px;">Enter admin password to continue</p>
+        <input type="password" id="admin-pass" placeholder="Password" onkeydown="if(event.key==='Enter')adminLogin()">
+        <p id="login-error">❌ Incorrect password</p>
+        <button onclick="adminLogin()">Login</button>
+      </div>
+    </div>
+    <div id="appointments-panel">
+      <p style="color:var(--text-light);font-size:14px;margin-bottom:20px;">All booked appointments:</p>
+      <div id="appts-list"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── PARTICLES ── */
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let pts=[];
+function resizeCanvas(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+resizeCanvas();window.addEventListener('resize',resizeCanvas);
+for(let i=0;i<60;i++)pts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+0.5,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,o:Math.random()*.5+.1});
+function drawParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pts.forEach(p=>{
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,255,255,${p.o})`;ctx.fill();
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>canvas.width)p.vx*=-1;
+    if(p.y<0||p.y>canvas.height)p.vy*=-1;
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+/* ── NAVBAR SCROLL ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40);
+});
+
+/* ── LOAD MORE REVIEWS ── */
+function loadMoreReviews(){
+  document.querySelectorAll('.hidden-review').forEach(r=>r.style.display='block');
+  document.getElementById('load-more').style.display='none';
+}
+
+/* ── CHATBOT ENGINE ── */
+let chatStep='start';let chatData={};
+let appointments=JSON.parse(localStorage.getItem('vdl_appointments')||'[]');
+
+function openChat(){document.getElementById('chatbot').classList.add('open');if(chatStep==='start')startChat();}
+function closeChat(){document.getElementById('chatbot').classList.remove('open');}
+
+function addMsg(text,type='bot'){
+  const b=document.getElementById('chat-body');
+  const m=document.createElement('div');
+  m.className='msg '+type;m.textContent=text;
+  b.appendChild(m);b.scrollTop=b.scrollHeight;
+}
+function setOptions(opts){
+  const c=document.getElementById('chat-options');
+  c.innerHTML='';
+  opts.forEach(o=>{
+    const btn=document.createElement('button');
+    btn.className='chat-opt';btn.textContent=o;
+    btn.onclick=()=>{addMsg(o,'user');c.innerHTML='';handleOption(o);};
+    c.appendChild(btn);
+  });
+}
+function showInput(show=true){document.querySelector('.chat-input-row').style.display=show?'flex':'none';}
+
+function startChat(){
+  addMsg('👋 Welcome to Vijay Dental Lab! I\'m here to help you book an appointment.');
+  setTimeout(()=>{
+    addMsg('May I know your name?');
+    chatStep='name';showInput(true);
+    document.getElementById('chat-options').innerHTML='';
+  },400);
+}
+
+function sendMsg(){
+  const inp=document.getElementById('chat-input');
+  const val=inp.value.trim();
+  if(!val)return;
+  addMsg(val,'user');inp.value='';
+  handleInput(val);
+}
+
+function handleInput(val){
+  if(chatStep==='name'){
+    chatData.name=val;
+    setTimeout(()=>{
+      addMsg('Nice to meet you, '+val+'! 😊 What problem are you facing?');
+      setOptions(['Toothache / Pain','Cavity / Decay','Crown / Bridge needed','Dentures','Missing tooth','Other']);
+      showInput(false);
+      chatStep='problem';
+    },300);
+  } else if(chatStep==='other_problem'){
+    chatData.problem=val;
+    setTimeout(()=>askAge(),300);
+  } else if(chatStep==='age'){
+    if(isNaN(val)||val<1||val>120){addMsg('Please enter a valid age.');return;}
+    chatData.age=val;
+    setTimeout(()=>askPhone(),300);
+  } else if(chatStep==='phone'){
+    if(val.replace(/\D/g,'').length<10){addMsg('Please enter a valid 10-digit phone number.');return;}
+    chatData.phone=val;
+    setTimeout(()=>confirmBooking(),300);
+  }
+}
+
+function handleOption(opt){
+  if(chatStep==='problem'){
+    if(opt==='Other'){
+      addMsg('Please describe your problem:');showInput(true);chatStep='other_problem';
+    } else {
+      chatData.problem=opt;setTimeout(()=>askAge(),300);
+    }
+  }
+}
+function askAge(){
+  addMsg('What is your age?');showInput(true);chatStep='age';
+}
+function askPhone(){
+  addMsg('Please share your WhatsApp number so we can send your appointment details:');
+  showInput(true);chatStep='phone';
+}
+function confirmBooking(){
+  const token='VDL-'+Date.now().toString().slice(-5);
+  chatData.token=token;
+  chatData.time=new Date().toLocaleString('en-IN');
+  appointments.push({...chatData});
+  localStorage.setItem('vdl_appointments',JSON.stringify(appointments));
+  showInput(false);
+  setTimeout(()=>{
+    addMsg('✅ Appointment Booked Successfully!');
+    addMsg(`🎫 Token: ${token}\n👤 Name: ${chatData.name}\n🦷 Problem: ${chatData.problem}\n📅 Booked: ${chatData.time}`);
+    addMsg(`📱 A summary has been prepared. Please note:\n📞 Doctor's contact: 089187 74523`);
+    addMsg('We will reach out to confirm your appointment timing. Thank you! 🙏');
+    // Open WhatsApp with report
+    const msg=encodeURIComponent(`*Vijay Dental Lab – Appointment Confirmation*\n\n🎫 Token: ${token}\n👤 Name: ${chatData.name}\n🦷 Problem: ${chatData.problem}\n👶 Age: ${chatData.age}\n📅 Booked: ${chatData.time}\n\nPlease contact: 089187 74523 for confirmation.\n\nThank you!`);
+    setTimeout(()=>{
+      window.open(`https://wa.me/${chatData.phone.replace(/\D/g,'')}?text=${msg}`,'_blank');
+    },1200);
+    chatStep='done';
+    setTimeout(()=>{
+      setOptions(['Book another','Close']);
+      document.getElementById('chat-options').querySelector('.chat-opt:last-child').onclick=()=>closeChat();
+      document.getElementById('chat-options').querySelector('.chat-opt:first-child').onclick=()=>{
+        document.getElementById('chat-body').innerHTML='';
+        document.getElementById('chat-options').innerHTML='';
+        chatStep='start';chatData={};startChat();
+      };
+    },2000);
+  },400);
+}
+
+/* ── ADMIN ── */
+function openAdmin(){document.getElementById('admin-overlay').classList.add('show');}
+function closeAdmin(){document.getElementById('admin-overlay').classList.remove('show');}
+function adminLogin(){
+  const pass=document.getElementById('admin-pass').value;
+  if(pass==='122333'){
+    document.getElementById('login-section').style.display='none';
+    document.getElementById('appointments-panel').style.display='block';
+    renderAppointments();
+  } else {
+    document.getElementById('login-error').style.display='block';
+  }
+}
+function renderAppointments(){
+  const list=document.getElementById('appts-list');
+  const data=JSON.parse(localStorage.getItem('vdl_appointments')||'[]');
+  if(!data.length){list.innerHTML='<div class="appt-empty">No appointments yet.</div>';return;}
+  list.innerHTML=data.map((a,i)=>`
+    <div class="appt-card">
+      <span class="appt-token">${a.token||'N/A'}</span>
+      <strong>${a.name||'Unknown'}</strong>
+      <span>🦷 Problem: ${a.problem||'N/A'}<br>👶 Age: ${a.age||'N/A'}<br>📱 Phone: ${a.phone||'N/A'}<br>📅 ${a.time||''}</span>
+    </div>
+  `).reverse().join('');
+}
+
+/* ── Close overlay on outside click ── */
+document.getElementById('admin-overlay').addEventListener('click',function(e){
+  if(e.target===this)closeAdmin();
+});
+</script>
+</body>
+</html>
